@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{circuitikz}
+\usepackage{array}
+
+\title{Protokol TEF 1}
+\author{Adam Cíleček}
+\date{30. září 2024}
+\usepackage[a4paper, margin=0.5in]{geometry} % Zde můžeš upravit hodnotu margin
+
+\begin{document}
+
+\maketitle
+
+\section{Popis experimentu}
+Experimenemt se skládal ze dvou částí: 
+\begin{enumerate}
+\item Porovnání experimentálního průběhu nabíjení kondenzátoru s teoretickou rovnicí: 
+\begin{equation}
+U_{c} = U_{b} \left( 1 - e^{-\frac{t}{RC}} \right)
+\end{equation}
+\item Porovnání experimentálního moudulu přenosu K s teoretickým vztahem:
+\begin{equation}
+\text{Experimentální}\, K_{U} = \frac{U_{CH2}}{U_{CH1}} \quad \text{Teoretická}\, K_{U} = \frac{1}{\sqrt{1 + (\omega RC)^2}}
+\end{equation}
+\end{enumerate}
+
+
+
+\subsection{Obvod a jeho popis}
+\begin{minipage}{0.45\textwidth}
+    \begin{circuitikz}
+        \draw
+        (0,0) to[sinusoidal voltage source, v_=5V] (0,3) % AC voltage source
+        to[R=1k$\Omega$] (3,3) % Resistor
+        to[C=10nF] (3,0) % Capacitor
+        -- (0,0); % Closing the circuit
+    \end{circuitikz}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{circuitikz}
+        \draw
+        (0,0) to[sinusoidal voltage source, v_=5V] (0,3) % AC voltage source
+        to[R=470$\Omega$] (3,3) % Resistor 470 ohms
+        to[L=200$\mu$H] (3,0) % Inductor 200 uH
+        -- (0,0); % Closing the circuit
+    \end{circuitikz}
+\end{minipage}
+
+\vspace{0.5cm} % Optional: Adjust spacing between the diagrams and the text
+\noindent\textbf{Poznámka:} K cívce a kondenzátoru byl připojen osciloskop pro měření kolísání napětí.
+
+
+
+\subsection{Stručný postup}
+\begin{enumerate}
+\item Zapojili jsme obvod a pomocí osciloskopu postupně zapsali křivku napětí, která byla posléze porovnána s teoretickou křivkou
+\item Zapojili jsme obvod, kde jsme zaznamenávali měnící se napětí při změně frekvence (pro každou frekvenci byly zaznamenány 4 hodnoty)
+
+\section{Výsledky}
+\begin{minipage}{0.5\textwidth}
+    \begin{enumerate}
+        \item V první části experimentu si můžeme všimnout, že křivka odpovídá teoretické úvaze a zároveň se hodnota limitně blíží napětí na zdroji (5V).\textbf{ Můžeme tedy tento experiment považovat za úspěšný.}
+    \end{enumerate}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \caption{Napětí na kondenzátoru v závislosti na čase}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Čas (us)} & \textbf{Napětí (V)} \\
+        \hline
+        0   & 0.00  \\
+        4   & 1.65  \\
+        8   & 2.75  \\
+        12  & 3.33  \\
+        16  & 3.99  \\
+        20  & 4.32  \\
+        24  & 4.55  \\
+        28  & 4.66  \\
+        32  & 4.78  \\
+        36  & 4.89  \\
+        \hline
+    \end{tabular}
+\end{minipage}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Nabíjení kondenzátoru.png}
+    \caption {Nabíjení kondenzátoru}
+    \label{fig:enter-label}
+\end{figure}
+
+\item V druhém experimentu už o správnosti výsledků jednoznačně mluvit nemůžeme. Křivky neodpovídají těm teoretickým, a následně i číselné výsledky pro experimentální a teoretické hodnoty jsou odlišné.\textbf{ V tomto případě hovoříme o neúspěšnosti experimentu.}
+
+\end{enumerate}
+
+\begin{minipage}{0.45\textwidth}
+    \centering
+        \caption{Naměřené hodnoty pro obvod s rezistorem}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        f[Hz] & $U_{1}$[V] & $U_{2}$[V] & K[/] \\
+        \hline
+        $10$ & 5.12 & 5.02 & 1.02  \\
+        $10$ & 5.12 & 5.02 & 1.02 \\
+        $10$ & 5.12 & 5.02 & 1.02 \\
+        $10$ & 5.12 & 5.02 & 1.02 \\
+        $10^2$ & 5.12 & 5.02 & 1.02 \\
+        $10^2$ & 5.12 & 5.02 & 1.02 \\
+        $10^2$ & 5.12 & 5.02 & 1.02 \\
+        $10^2$ & 5.12 & 5.02 & 1.02 \\
+        $10^3$ & 5.12 & 5.02 & 1.02 \\
+        $10^3$ & 4.96 & 5.02 & 0.99 \\
+        $10^3$ & 4.88 & 5.04 & 0.97 \\
+        $10^3$ & 4.88 & 4.96 & 0.98 \\
+        $10^4$ & 5.12 & 4.30 & 1.19 \\
+        $10^4$ & 5.12 & 4.24 & 1.21 \\
+        $10^4$ & 4.96 & 4.40 & 1.13 \\
+        $10^4$ & 5.04 & 4.24 & 1.19 \\
+        $10^5$ & 4.40 & 0.77 & 5.71 \\
+        $10^5$ & 4.32 & 0.75 & 5.76 \\
+        $10^5$ & 4.32 & 0.74 & 5.84 \\
+        $10^5$ & 4.40 & 0.85 & 5.18 \\
+        $10^6$ & 4.52 & 0.09 & 50.20 \\
+        $10^6$ & 4.48 & 0.10 & 44.80 \\
+        $10^6$ & 4.52 & 0.08 & 56.50 \\
+        $10^6$ & 4.48 & 0.08 & 56.00 \\
+        \hline
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \caption{Tabulka hodnot použitých pro graf}
+    \begin{tabular}{|c|c|}
+        \hline
+        f[Hz] & průměrné K[/] pro danou f \\
+        \hline
+        $10$ & 1.02  \\
+        $10^2$ & 1.02 \\
+        $10^3$ & 0.99 \\
+        $10^4$ & 1.18 \\
+        $10^5$ & 5.62 \\
+        $10^6$ & 51.86 \\
+        \hline
+    \end{tabular}
+\end{minipage}
+        
+\begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{TEK1graf.png}
+        \caption{Frekvenční charakteristika dolní propustnosti}
+        \label{fig:enter-label}
+    \end{figure}
+     
+
+
+\vspace{1cm} % Mezera mezi tabulkami
+
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \caption{Naměřené hodnoty pro obvod s cívkou}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        f[Hz] & $U_{1}$[V] & $U_{2}$[V] & K[/] \\
+        \hline
+        $10$ & 1.02 & 0.02 & 51  \\
+        $10$ & 1.02 & 0.02 & 51 \\
+        $10$ & 1.02 & 0.02 & 51 \\
+        $10$ & 1.02 & 0.02 & 51 \\
+        $10^2$ & 3.66 & 0.02 & 183 \\
+        $10^2$ & 3.66 & 0.02 & 183 \\
+        $10^2$ & 3.66 & 0.03 & 122 \\
+        $10^2$ & 3.66 & 0.03 & 122 \\
+        $10^3$ & 4.16 & 0.05 & 83.2 \\
+        $10^3$ & 4.16 & 0.05 & 83.2 \\
+        $10^3$ & 4.16 & 0.06 & 69.3 \\
+        $10^3$ & 4.16 & 0.05 & 83.2 \\
+        $10^4$ & 4.64 & 0.15 & 30.8 \\
+        $10^4$ & 4.64 & 0.13 & 35.7 \\
+        $10^4$ & 4.64 & 0.13 & 35.7 \\
+        $10^4$ & 4.64 & 0.14 & 33.1 \\
+        $10^5$ & 4.16 & 1.10 & 3.78 \\
+        $10^5$ & 4.16 & 1.10 & 3.78 \\
+        $10^5$ & 4.16 & 1.10 & 3.78 \\
+        $10^5$ & 4.16 & 1.12 & 3.71 \\
+        $10^6$ & 4.68 & 3.94 & 1.19 \\
+        $10^6$ & 4.68 & 3.94 & 1.19 \\
+        $10^6$ & 4.68 & 3.92 & 1.19 \\
+        $10^6$ & 4.68 & 3.92 & 1.19 \\
+        \hline
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \caption{Tabulka hodnot použitých pro graf}
+    \begin{tabular}{|c|c|}
+        \hline
+        f[Hz] & průměrné K[/] pro danou f \\
+        \hline
+        $10$ & 1.02  \\
+        $10^2$ & 1.02 \\
+        $10^3$ & 0.99 \\
+        $10^4$ & 1.18 \\
+        $10^5$ & 5.62 \\
+        $10^6$ & 51.86 \\
+        \hline
+    \end{tabular}
+\end{minipage}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{TEK1grafL.png}
+    \caption{Frekvenční charakteristika dolní propustnosti}
+    \label{fig:enter-label}
+\end{figure}
+
+
+
+\end{document}
